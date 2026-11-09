@@ -7,7 +7,10 @@ import reportsRoutes from './routes/reports.routes.js';
 
 const app = express();
 app.use(helmet());
-app.use(cors({ origin: process.env.CLIENT_ORIGIN || 'http://localhost:5173' }));
+app.use(cors({
+  origin: process.env.CLIENT_ORIGIN,
+  credentials: true
+}));
 app.use(express.json({ limit: '20kb' }));
 
 app.get('/api/health', (_req, res) => res.json({ status: 'ok' }));
